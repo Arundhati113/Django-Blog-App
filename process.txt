@@ -1,0 +1,77 @@
+The following steps were done to run this project:
+
+1. Create a Django project using the following command
+      django-admin startproject Assignment1
+
+2.Navigate into the directory where manage.py script exists and then 
+   run the below command
+      cd Assignment1
+      python manage.py startapp myapp
+
+3.Open settings.py file and scroll to the installed apps section & add the
+   newly created app myapp at the bottom and save it.
+   
+4.Next, make migrations which will apply all the unapplied migrations 
+   on the SQLite database.
+      python manage.py makemigrations
+      python manage.py migrate
+
+5.Then make the data models for myapp. This will have an Article 
+   model in our database to store the articles.The Meta class inside the 
+   model contains metadata.Results are sorted in the created_on field in 
+   descending order by default when we query the database.
+
+6.Now that our new database model is created we need to create a new 
+   migration record for it and migrate the changes into our database.
+      python manage.py makemigrations
+      python manage.py migrate
+
+7.Next create a superuser & add the necessary details to login to the
+   admin site.
+      python manage.py createsuperuser
+
+8.Open the myapp/admin.py file and register the Article model there.
+
+9.Now run the server & go to the address http://127.0.0.1:8000/admin
+     python manage.py runserver
+
+10.Now add articles by clicking on the add icon beside Articles & 
+     save them.
+
+11.Open the myapp/views.py file & copy the snippet code from the link.
+     A TemplateView is a generic class-based view that helps to create a 
+     view for a specific template without re-inventing the wheel.It simply
+     renders a Django template(here home.html) and sends it to the client.
+
+12.Open the myapp/urls.py file & copy the snippet code from the link to 
+     map the URL for the views made above. I mapped general URL
+     patterns for the views using the path function. The first pattern takes 
+     an empty string denoted by ' ' and returns the result generated from
+     the HomePageView class which is a list of articles for the homepage.
+
+13.Then include the myapp URLs to the actual project for doing so open 
+     the Assignment1/urls.py file. Import the include function and then 
+     add  the path to the new urls.py file in the  urlpatterns list.
+       path('', include('myapp.urls')),
+
+14.Now we need to make templates to render the result to the users. To
+    use Django templates we need to configure the template setting first.
+
+15.Now open the project’s settings.py file and just below BASE_DIR add 
+    the route to the template directory as follows.
+
+     TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates')
+
+16.Now In settings.py scroll to the,TEMPLATES & add the newly created 
+    TEMPLATE_DIRS  in the DIRS
+
+17.In the templates folder add a new HTML file base.html.
+    Make another HTML file named home.html that inherits from 
+    base.html
+
+18.Now run the server and visit http://127.0.0.1:8000/ then you will see
+     the homepage of myapp.
+
+    
+
+   
